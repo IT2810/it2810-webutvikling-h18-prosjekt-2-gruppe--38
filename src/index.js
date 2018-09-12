@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { injectGlobal } from 'styled-components'
-import App from './Components/App'
+// import App from './Components/App'
+import FrontPageWrapper from './Components/FrontPageWrapper'
 import registerServiceWorker from './registerServiceWorker'
 
 injectGlobal`
@@ -11,5 +12,5 @@ injectGlobal`
         font-family: sans-serif;
     }
 `
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<FrontPageWrapper />, document.getElementById('root'))
 registerServiceWorker()

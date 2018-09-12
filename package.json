@@ -2,7 +2,7 @@
   "name": "it2810-webutvikling-h18-prosjekt-2-gruppe--38",
   "version": "0.1.0",
   "private": true,
-  "license": "GNU GPLv3",
+  "license": "GPL-3.0",
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
