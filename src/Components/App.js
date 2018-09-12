@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled, { keyframes } from 'styled-components'
-import logo from './logo.svg'
+import logo from '../Assets/logo.svg'
 
 const AppWrapper = styled.div`
   text-align: center;
