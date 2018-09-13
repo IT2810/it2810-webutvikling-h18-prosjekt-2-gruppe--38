@@ -10,11 +10,13 @@ const NavList = styled.ul`
     width: 100%;
     height: 20%;
     margin: 0;
+    margin-bottom: 2%;
     padding: 0;
     overflow: hidden;
     background-color: papayawhip;
+    font-size: 1.2em
 
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 500px) {
       flex-direction: column;
     }
 `
