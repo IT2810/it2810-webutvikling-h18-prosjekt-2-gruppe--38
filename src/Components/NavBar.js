@@ -14,7 +14,7 @@ const NavList = styled.ul`
     padding: 0;
     overflow: hidden;
     background-color: papayawhip;
-    font-size: 1.2em
+    font-size: 1.2em;
 
     @media screen and (max-width: 500px) {
       flex-direction: column;
