@@ -3,16 +3,16 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const Button = styled.div`
-    background-color: palevioletred;
-    color: papayawhip;
-    padding: 10px;
-    font-size: 1vw;
-    border: none;
-    border-radius: 7px;
+  background-color: palevioletred;
+  color: papayawhip;
+  padding: 10px;
+  font-size: 1vw;
+  border: none;
+  border-radius: 7px;
 
-    @media screen and (max-width: 800px) {
-      font-size: 2vw;
-    }
+  @media screen and (max-width: 800px) {
+    font-size: 2vw;
+  }
 `
 
 const Content = styled.div`

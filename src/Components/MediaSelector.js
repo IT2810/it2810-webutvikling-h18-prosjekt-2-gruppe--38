@@ -20,9 +20,9 @@ const Wrapper = styled.div`
       padding: 0 10% 0 10%;
     }
   
-    @media screen and (max-width: 1200px) {
-      padding: 0 25% 0 25%;
-    }
+  @media screen and (max-width: 1200px) {
+    padding: 0 25% 0 25%;
+  }
 `
 
 export default class MediaSelector extends Component {

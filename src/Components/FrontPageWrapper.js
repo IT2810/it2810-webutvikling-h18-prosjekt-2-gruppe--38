@@ -13,9 +13,9 @@ const Wrapper = styled.div`
 const FrontPageWrapper = () => {
   return (
     <Wrapper>
-      <Title title="Exhibition Name"/>
+      <Title title="Exhibition Name" />
       <NavBar list={['Home', 'News', 'Contact', 'About']} />
-      <Display svgElements={[]}/>
+      <Display svgElements={[]} />
       <MediaSelector
         elements={[
           {
