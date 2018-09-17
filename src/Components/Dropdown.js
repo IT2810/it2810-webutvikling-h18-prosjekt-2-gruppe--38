@@ -51,11 +51,13 @@ const Element = styled.a`
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  background-color: #f1f1f1;
 
   &:hover {
     background-color: #ddd;
   }
 `
+
 export default class Dropdown extends Component {
   constructor (props) {
     super(props)
@@ -64,7 +66,11 @@ export default class Dropdown extends Component {
 
   handleClick (e) {
     this.setState({ selected: e.target.innerHTML })
-    this.render()
+    let xs = document.getElementsByClassName(this.props.name)
+
+    for (let x of xs) {
+      x.style.backgroundColor = '#f1f1f1'
+    }
     e.target.style.backgroundColor = 'palevioletred'
   }
 
@@ -72,10 +78,12 @@ export default class Dropdown extends Component {
     return this.props.elements.map((name) => {
       return (
         <Element
-          className="selectors"
-          onClick={(e) => this.handleClick(e)}
+          className={this.props.name}
+          onClick={(e) => this.handleClick(e, this.props.name)}
           href="#"
-          key={name}>
+          key={name}
+          style={{ backgroundColor: '#f1f1f1' }}
+        >
           {name}
         </Element>
       )
