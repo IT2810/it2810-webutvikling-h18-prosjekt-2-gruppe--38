@@ -4,6 +4,7 @@ import Title from './Title'
 import NavBar from './NavBar'
 import Display from './Display'
 import MediaSelector from './MediaSelector'
+import data from '../Assets/poems.json'
 
 const Wrapper = styled.div`
   text-align: center;
@@ -19,16 +20,16 @@ const FrontPageWrapper = () => {
       <MediaSelector
         elements={[
           {
-            name: 'Image',
+            name: 'Images',
             categories: ['Abstract', 'Post-modern', 'Absurdist']
           },
           {
-            name: 'Text',
-            categories: ['Descriptive', 'Short', 'Fluff']
+            name: 'Poems',
+            categories: ['War', 'Philosophy', 'Flowers']
           },
           {
-            name: 'Music',
-            categories: ['Classical', 'Rock', 'Sounds clips']
+            name: 'Audio Clips',
+            categories: ['Animals', 'Instruments', 'People']
           }
         ]}
       />
