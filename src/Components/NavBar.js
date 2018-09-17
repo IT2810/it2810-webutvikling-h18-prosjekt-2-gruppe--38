@@ -53,10 +53,6 @@ export default class NavBar extends Component {
     return <NavList>{listElements}</NavList>
   }
 
-  window.onresize = handleResize = () => {
-    
-  }
-
   render () {
     return this.renderListElements()
   }
