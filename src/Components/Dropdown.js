@@ -3,20 +3,21 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const Button = styled.div`
-  background-color: papayawhip;
-  color: palevioletred;
+  background-color: palevioletred;
+  color: papayawhip;
   padding: 10px;
-  font-size: 1.2em
-  border: 2px solid palevioletred;
+  font-size: 1vw;
+  border: none;
   border-radius: 7px;
+
+  @media screen and (max-width: 800px) {
+    font-size: 2vw;
+  }
 `
 
 const Content = styled.div`
   display: none;
-  position: relative;
-  width: inherit;
-  padding: 0;
-  margin: 0;
+  position: absolute;
   background-color: #f1f1f1;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -27,22 +28,15 @@ const Container = styled.div`
   flex: 0 1 auto;
   flex-grow: 1;
   margin: 3%;
-  height: auto;
-  width: inherit;
 
   &:hover {
     ${Content} {
       display: block;
     }
-
+    
     ${Button} {
-      background-color: palevioletred;
-      color: papayawhip;
+      background-color: #3e8e41;
     }
-  }
-  
-  @media screen and (max-width: 700px) { 
-    margin: 3% 0 3% 0;
   }
 `
 
@@ -57,33 +51,9 @@ const Element = styled.a`
   }
 `
 export default class Dropdown extends Component {
-  constructor (props) {
-    super(props)
-    this.state = { selected: '' }
-  }
-
-  handleClick (e) {
-    this.setState({ selected: e.target.innerHTML })
-    let xs = document.getElementsByClassName('selectors')
-    for (let x of xs) {
-      x.style.backgroundColor = '#f1f1f1'
-    }
-    // console.log(xs.style.)
-
-    e.target.style.backgroundColor = 'palevioletred'
-  }
-
   loadDropdownElements () {
     return this.props.elements.map((name) => {
-      return (
-        <Element
-          className="selectors"
-          onClick={(e) => this.handleClick(e)}
-          href="#"
-          key={name}>
-          {name}
-        </Element>
-      )
+      return <Element href="#" key={name}>{name}</Element>
     })
   }
   render () {

@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  padding: 0 30% 0 30%;
+  padding: 0 35% 0 35%;
   margin: auto;
   height: auto;
   text-align: center;
@@ -17,10 +17,10 @@ const Wrapper = styled.div`
 
   @media screen and (max-width: 700px) {
       flex-direction: column;
-      padding: 0 15% 0 15%;
+      padding: 0 10% 0 10%;
     }
   
-  @media screen and (min-width: 701px) and (max-width: 1200px) {
+  @media screen and (max-width: 1200px) {
     padding: 0 25% 0 25%;
   }
 `
