@@ -64,12 +64,7 @@ export default class Dropdown extends Component {
 
   handleClick (e) {
     this.setState({ selected: e.target.innerHTML })
-    let xs = document.getElementsByClassName('selectors')
-    for (let x of xs) {
-      x.style.backgroundColor = '#f1f1f1'
-    }
-    // console.log(xs.style.)
-
+    this.render()
     e.target.style.backgroundColor = 'palevioletred'
   }
 
