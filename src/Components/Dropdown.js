@@ -51,9 +51,24 @@ const Element = styled.a`
   }
 `
 export default class Dropdown extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      selected: ''
+    }
+  }
+  handleCategoryClick (e) {
+    let selected = e.target.innerHTML
+    console.log(selected)
+    this.setState({ selected: selected })
+    // KALLER PÅ FUNKSJONEN I PARENT-KOMPONENTEN!
+    this.props.myFunc(selected, this)
+  };
+
   loadDropdownElements () {
+    // console.log(this.props.elements)
     return this.props.elements.map((name) => {
-      return <Element href="#" key={name}>{name}</Element>
+      return <Element onClick = {(e) => this.handleCategoryClick(e)} href="#" key={name}>{name}</Element>
     })
   }
   render () {
@@ -70,5 +85,7 @@ export default class Dropdown extends Component {
 
 Dropdown.propTypes = {
   name: PropTypes.string,
-  elements: PropTypes.array
+  elements: PropTypes.array,
+  myFunc: PropTypes.func
+
 }

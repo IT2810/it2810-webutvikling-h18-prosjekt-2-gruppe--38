@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import Title from './Title'
 import NavBar from './NavBar'
@@ -10,30 +10,44 @@ const Wrapper = styled.div`
   margin: 0;
   padding: 0;
 `
-const FrontPageWrapper = () => {
-  return (
-    <Wrapper>
-      <Title title="Exhibition Name" />
-      <NavBar list={['Home', 'News', 'Contact', 'About']} />
-      <Display svgElements={[]} />
-      <MediaSelector
-        elements={[
-          {
-            name: 'Image',
-            categories: ['Abstract', 'Post-modern', 'Absurdist']
-          },
-          {
-            name: 'Text',
-            categories: ['Descriptive', 'Short', 'Fluff']
-          },
-          {
-            name: 'Music',
-            categories: ['Classical', 'Rock', 'Sounds clips']
-          }
-        ]}
-      />
-    </Wrapper>
-  )
-}
+export default class FrontPageWrapper extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { imgDir: '' }
+    this.transferString = this.transferString.bind(this)
+  }
+  transferString (imageDirectory) {
+    console.log(imageDirectory + ' DETTE FUNKET')
+    this.setState({ imgDir: imageDirectory }, function () {
+      console.log(this.state.imgDir)
+    })
+  }
+  render () {
+    return (
+      <Wrapper>
+        <Title title="Exhibition Name" />
+        <NavBar list={['Home', 'News', 'Contact', 'About']} />
+        <Display svgElements={[]} dir={this.state.imgDir}/>
+        <MediaSelector
+          elements={[
+            {
+              name: 'Image',
+              categories: ['Insects', 'Fish', 'Cats']
+            },
+            {
+              name: 'Poems',
+              categories: ['War', 'Philosophy', 'Flowers']
+            },
+            {
+              name: 'Audio Clips',
+              categories: ['Animals', 'Instruments', 'People']
+            }
+          ]}
 
-export default FrontPageWrapper
+          myFunc1 = {this.transferString}
+
+        />
+      </Wrapper>
+    )
+  }
+}
