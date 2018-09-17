@@ -45,17 +45,16 @@ const ListElement = styled.li`
 
 export default class NavBar extends Component {
   renderListElements () {
-    return this.props.list.map((listValue) => {
+    let w = Math.max(document.body.clientWidth, window.innerWidth || 0)
+    console.log(w)
+    let listElements = this.props.list.map((listValue) => {
       return <ListElement key={listValue}>{listValue}</ListElement>
     })
+    return <NavList>{listElements}</NavList>
   }
 
   render () {
-    return (
-      <NavList>
-        {this.renderListElements()}
-      </NavList>
-    )
+    return this.renderListElements()
   }
 }
 
