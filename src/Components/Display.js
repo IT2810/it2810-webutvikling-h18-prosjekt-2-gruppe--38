@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import Images from './Images'
+import MediaSelector from './MediaSelector'
+import axios from 'axios'
 
 const Box = styled.div`
   display: block;
@@ -12,6 +15,7 @@ const Box = styled.div`
   margin-bottom: 4%;
   text-align: center;
 
+
   @media screen and (max-width: 800px) {
     width: 75%;
     }
@@ -19,23 +23,47 @@ const Box = styled.div`
 
 const View = styled.div`
   display: block;
-  border: 2px solid black;
   width: 50%;
-  height: auto;
   margin: auto;
   margin-top: 5%;
   margin-bottom: 5%;
+  padding: 0;
   text-align: center;
+  
 `
 export default class Display extends Component {
-  load () {
-    // TODO: load svg, image and music elements using AJAX after implementing logic for creating the sets
+  constructor (props) {
+    super(props)
+    // this.axiosCall = this.axiosCall.bind(this)
+    this.state = {
+      selectedImage: null
+
+    }
   }
+  componentDidUpdate (prevProps, prevState) {
+    console.log('componentDidUpdate BLE KJØRT')
+    if (prevProps.dir !== this.props.dir) {
+      this.axiosCall(this.props.dir)
+    }
+  }
+  axiosCall (dir) {
+    axios.get(dir)
+      .then((result) => {
+        this.setState({
+          selectedImage: result.data
+        })
+      })
+      .catch(function (error) {
+      // handle error
+        console.log(error)
+      })
+  }
+
   render () {
     return (
       <Box>
         <View>
-          Hello, this is the display box, where svg and image are is going to be displayed
+          <div dangerouslySetInnerHTML={{ __html: this.state.selectedImage }} />;
         </View>
         <p>
           Text for the display goes here
@@ -46,5 +74,6 @@ export default class Display extends Component {
 }
 
 Display.propTypes = {
-  svgElements: PropTypes.array
+  svgElements: PropTypes.array,
+  dir: PropTypes.string
 }

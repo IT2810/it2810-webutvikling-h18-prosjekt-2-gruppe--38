@@ -61,25 +61,32 @@ const Element = styled.a`
 export default class Dropdown extends Component {
   constructor (props) {
     super(props)
-    this.state = { selected: '' }
+    this.state = {
+      selected: ''
+    }
   }
-
-  handleClick (e) {
-    this.setState({ selected: e.target.innerHTML })
+  handleCategoryClick (e) {
+    let selected = e.target.innerHTML
+    console.log(selected)
+    this.setState({ selected: selected })
+    // KALLER PÅ FUNKSJONEN I PARENT-KOMPONENTEN!
+    this.props.myFunc(selected, this)
+    
+        this.setState({ selected: e.target.innerHTML })
     let xs = document.getElementsByClassName(this.props.name)
 
     for (let x of xs) {
       x.style.backgroundColor = '#f1f1f1'
     }
     e.target.style.backgroundColor = 'palevioletred'
-  }
-
+  };
   loadDropdownElements () {
+    // console.log(this.props.elements)
     return this.props.elements.map((name) => {
       return (
         <Element
           className={this.props.name}
-          onClick={(e) => this.handleClick(e, this.props.name)}
+          onClick={(e) => this.handleCategoryClick(e, this.props.name)}
           href="#"
           key={name}
           style={{ backgroundColor: '#f1f1f1' }}
@@ -103,5 +110,7 @@ export default class Dropdown extends Component {
 
 Dropdown.propTypes = {
   name: PropTypes.string,
-  elements: PropTypes.array
+  elements: PropTypes.array,
+  myFunc: PropTypes.func
+
 }
