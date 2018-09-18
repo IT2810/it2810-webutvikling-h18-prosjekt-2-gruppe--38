@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  padding: 0 35% 0 35%;
+  padding: 0 30% 0 30%;
   margin: auto;
   height: auto;
   text-align: center;
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
     }
   
   @media screen and (max-width: 1200px) {
-    padding: 0 25% 0 25%;
+    padding: 0 22% 0 22%;
   }
 `
 

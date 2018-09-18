@@ -4,6 +4,7 @@ import Title from './Title'
 import NavBar from './NavBar'
 import Display from './Display'
 import MediaSelector from './MediaSelector'
+import data from '../Assets/poems.json'
 
 const Wrapper = styled.div`
   text-align: center;

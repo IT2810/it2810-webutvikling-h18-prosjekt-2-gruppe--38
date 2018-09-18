@@ -12,7 +12,7 @@ const Box = styled.div`
   height: auto;
   margin: auto;
   margin-top: 6%;
-  margin-bottom: 10%;
+  margin-bottom: 4%;
   text-align: center;
 
 
