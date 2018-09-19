@@ -44,6 +44,10 @@ export default class Display extends Component {
     if (prevProps.dir !== this.props.dir) {
       this.axiosCall(this.props.dir)
     }
+    if (prevProps.dispObject !== this.props.dispObject) {
+      // DO SOMETHING WITH THE OBJECT!
+      console.log(this.props.dispObject + ' Here is the object that will be printed!')
+    }
   }
   axiosCall (dir) {
     axios.get(dir)
@@ -74,5 +78,7 @@ export default class Display extends Component {
 
 Display.propTypes = {
   svgElements: PropTypes.array,
-  dir: PropTypes.string
+  dir: PropTypes.string,
+  dispObject: PropTypes.array
+
 }

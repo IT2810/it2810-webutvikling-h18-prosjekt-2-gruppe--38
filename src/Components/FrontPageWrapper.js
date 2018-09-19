@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { consolidateStreamedStyles } from 'styled-components'
 import Title from './Title'
 import NavBar from './NavBar'
 import Display from './Display'
@@ -16,8 +16,10 @@ export default class FrontPageWrapper extends Component {
     super(props)
     this.state = { imgDir: '',
       tabObj: {},
+      sendObj: [],
       selectedStateMS: { } }
     this.transferState = this.transferState.bind(this)
+    this.sendClick = this.sendClick.bind(this)
   }
   transferState (stateFromMediaSelector) { // Fired from the child component, MediaSelector.
     let sel = stateFromMediaSelector
@@ -28,15 +30,20 @@ export default class FrontPageWrapper extends Component {
 
   checkIfAllThreeSelected () {
     let obj = this.state.selectedStateMS
+
+    if (this.objectLength(obj) === 3) {
+      this.generateTabs()
+    }
+  }
+
+  objectLength (object) {
     var keys = []
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key)) {
+    for (var key in object) {
+      if (object.hasOwnProperty(key)) {
         keys.push(key)
       }
     }
-    if (keys.length === 3) {
-      this.generateTabs()
-    }
+    return keys.length
   }
   generateTabs () {
     let imgArray = ['One', 'Two', 'Three', 'Four']
@@ -76,12 +83,20 @@ export default class FrontPageWrapper extends Component {
     })
   }
 
+  sendClick (stringKeyFromNavBar) {
+    if (this.objectLength(this.state.tabObj) === 0) {
+      window.alert('You need to select three categories')
+    } else {
+      let s = this.state.tabObj[stringKeyFromNavBar]
+      this.setState({ sendObj: s })
+    }
+  }
   render () {
     return (
       <Wrapper>
         <Title title="Exhibition Name" />
-        <NavBar list={['Home', 'News', 'Contact', 'About']} />
-        <Display svgElements={[]} dir={this.state.imgDir}/>
+        <NavBar list={['One', 'Two', 'Three', 'Four']} sendClickToFPW = {this.sendClick} />
+        <Display svgElements={[]} dir={this.state.imgDir} dispObject = {this.state.sendObj} />
         <MediaSelector
           elements={[
             {

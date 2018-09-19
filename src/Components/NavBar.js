@@ -48,9 +48,12 @@ export default class NavBar extends Component {
     let w = Math.max(document.body.clientWidth, window.innerWidth || 0)
     console.log(w)
     let listElements = this.props.list.map((listValue) => {
-      return <ListElement key={listValue}>{listValue}</ListElement>
+      return <ListElement onClick = {() => this.handleClick(listValue)} key={listValue}>{listValue}</ListElement>
     })
     return <NavList>{listElements}</NavList>
+  }
+  handleClick (value) {
+    this.props.sendClickToFPW(value)
   }
 
   render () {
@@ -59,5 +62,6 @@ export default class NavBar extends Component {
 }
 
 NavBar.propTypes = {
-  list: PropTypes.array
+  list: PropTypes.array,
+  sendClickToFPW: PropTypes.func
 }
