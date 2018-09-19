@@ -54,30 +54,16 @@ export default class FrontPageWrapper extends Component {
     }
   }
   generateTabs () {
-    let imgArray = ['One', 'Two', 'Three', 'Four']
+    let imgArray = []
     let imgDir = [] // Denne skal sendes videre
-    const l = imgArray.length
     let poemArray = []
     let soundArray = []
-    switch (this.state.selectedStateMS.Image) {
-      case 'Insects':
-        for (let i = 0; i < l; i++) {
-          imgArray[i] = `/images/i${(i + 1).toString()}.svg`
-        }
-        break
-      case 'Fish':
-        for (let i = 0; i < l; i++) {
-          imgArray[i] = `/images/f${(i + 1).toString()}.svg`
-        }
-        break
-      case 'Cats':
-        for (let i = 0; i < l; i++) {
-          imgArray[i] = `/images/c${(i + 1).toString()}.svg`
-        }
-        break
+
+    for (let i = 0; i < 4; i++) {
+      imgArray.push('/images/' + this.state.selectedStateMS.Image.substr(0, 1).toLowerCase() + (i + 1) + '.svg')
     }
 
-    for (let i = 0; i < l; i++) {
+    for (let i = 0; i < 4; i++) {
       let randomNum = Math.floor((Math.random() * (imgArray.length - 1)))
       imgDir.push((imgArray.splice(randomNum, 1))[0])
     }
