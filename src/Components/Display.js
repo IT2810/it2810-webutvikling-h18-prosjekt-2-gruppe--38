@@ -41,7 +41,6 @@ export default class Display extends Component {
     }
   }
   componentDidUpdate (prevProps, prevState) {
-    console.log('componentDidUpdate BLE KJØRT')
     if (prevProps.dir !== this.props.dir) {
       this.axiosCall(this.props.dir)
     }

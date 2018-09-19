@@ -14,15 +14,68 @@ const Wrapper = styled.div`
 export default class FrontPageWrapper extends Component {
   constructor (props) {
     super(props)
-    this.state = { imgDir: '' }
-    this.transferString = this.transferString.bind(this)
+    this.state = { imgDir: '',
+      tabObj: {},
+      selectedStateMS: { } }
+    this.transferState = this.transferState.bind(this)
   }
-  transferString (imageDirectory) {
-    console.log(imageDirectory + ' DETTE FUNKET')
-    this.setState({ imgDir: imageDirectory }, function () {
-      console.log(this.state.imgDir)
+  transferState (stateFromMediaSelector) { // Fired from the child component, MediaSelector.
+    let sel = stateFromMediaSelector
+    this.setState({ selectedStateMS: sel }, function () {
+      this.checkIfAllThreeSelected()
     })
   }
+
+  checkIfAllThreeSelected () {
+    let obj = this.state.selectedStateMS
+    var keys = []
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        keys.push(key)
+      }
+    }
+    if (keys.length === 3) {
+      this.generateTabs()
+    }
+  }
+  generateTabs () {
+    let imgArray = ['One', 'Two', 'Three', 'Four']
+    let imgDir = [] // Denne skal sendes videre
+    const l = imgArray.length
+    switch (this.state.selectedStateMS.Image) {
+      case 'Insects':
+        for (let i = 0; i < l; i++) {
+          imgArray[i] = `/images/i${(i + 1).toString()}.svg`
+        }
+        break
+      case 'Fish':
+        for (let i = 0; i < l; i++) {
+          imgArray[i] = `/images/f${(i + 1).toString()}.svg`
+        }
+        break
+      case 'Cats':
+        for (let i = 0; i < l; i++) {
+          imgArray[i] = `/images/c${(i + 1).toString()}.svg`
+        }
+        break
+    }
+
+    for (let i = 0; i < l; i++) {
+      let randomNum = Math.floor((Math.random() * (imgArray.length - 1)))
+      imgDir.push((imgArray.splice(randomNum, 1))[0])
+    }
+    let mediaObject = {
+      'One': [imgDir[0], '', ''],
+      'Two': [imgDir[1], '', ''],
+      'Three': [imgDir[2], '', ''],
+      'Four': [imgDir[3], '', '']
+    }
+
+    this.setState({ tabObj: mediaObject }, function () {
+      console.log(this.state.tabObj)
+    })
+  }
+
   render () {
     return (
       <Wrapper>
@@ -45,7 +98,7 @@ export default class FrontPageWrapper extends Component {
             }
           ]}
 
-          myFunc1 = {this.transferString}
+          myFunc1 = {this.transferState}
 
         />
       </Wrapper>
