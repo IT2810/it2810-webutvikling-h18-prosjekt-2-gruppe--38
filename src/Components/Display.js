@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Images from './Images'
-import MediaSelector from './MediaSelector'
 import axios from 'axios'
 
 const Box = styled.div`

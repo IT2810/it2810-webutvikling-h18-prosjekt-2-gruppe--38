@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { consolidateStreamedStyles } from 'styled-components'
+import styled from 'styled-components'
 import Title from './Title'
 import NavBar from './NavBar'
 import Display from './Display'
