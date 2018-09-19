@@ -47,7 +47,8 @@ export default class MediaSelector extends Component {
         }
       }
     ), function () {
-      this.chooseImage()
+      // this.chooseImage()
+      this.props.myFunc1(this.state.selectedState) // sender til sin parent, frontpagewrapper.js
     })
   }
 
@@ -60,7 +61,7 @@ export default class MediaSelector extends Component {
     if (this.state.selectedState.Image === 'Insects') {
       console.log('Showing a picture of an insect')
       let imageDirectory = '/images/i' + randomNum.toString() + '.SVG'
-      this.props.myFunc1(imageDirectory)
+      //  this.props.myFunc1(imageDirectory)
 
       // this.axiosCall(imageDirectory);
     }
@@ -69,13 +70,13 @@ export default class MediaSelector extends Component {
       let imageDirectory = '/images/f' + randomNum.toString() + '.SVG'
       // this.axiosCall(imageDirectory);
       console.log('Showing a picture of a fish')
-      this.props.myFunc1(imageDirectory)
+      // this.props.myFunc1(imageDirectory)
     }
     if (this.state.selectedState.Image === 'Cats') {
       console.log('Showing a picture of a cat')
       let imageDirectory = '/images/c' + randomNum.toString() + '.SVG'
       // this.axiosCall(imageDirectory);
-      this.props.myFunc1(imageDirectory)
+      // this.props.myFunc1(imageDirectory)
     }
   }
 
