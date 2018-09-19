@@ -4,7 +4,7 @@ import Title from './Title'
 import NavBar from './NavBar'
 import Display from './Display'
 import MediaSelector from './MediaSelector'
-import data from '../Assets/poems.json'
+import axios from 'axios'
 
 const Wrapper = styled.div`
   text-align: center;
@@ -38,10 +38,20 @@ export default class FrontPageWrapper extends Component {
       this.generateTabs()
     }
   }
+  async getPoems (dir) {
+    try {
+      let l = await axios.get('/poems/' + dir.toLowerCase() + '.json')
+      return l.data
+    } catch (error) {
+      console.log(error)
+    }
+  }
   generateTabs () {
     let imgArray = ['One', 'Two', 'Three', 'Four']
     let imgDir = [] // Denne skal sendes videre
     const l = imgArray.length
+    let poemArray = []
+    let soundArray = []
     switch (this.state.selectedStateMS.Image) {
       case 'Insects':
         for (let i = 0; i < l; i++) {
@@ -64,16 +74,28 @@ export default class FrontPageWrapper extends Component {
       let randomNum = Math.floor((Math.random() * (imgArray.length - 1)))
       imgDir.push((imgArray.splice(randomNum, 1))[0])
     }
-    let mediaObject = {
-      'One': [imgDir[0], '', ''],
-      'Two': [imgDir[1], '', ''],
-      'Three': [imgDir[2], '', ''],
-      'Four': [imgDir[3], '', '']
+
+    let f = '/sound/' + this.state.selectedStateMS['Audio Clips'].toLowerCase() + '/'
+    for (let i = 1; i < 5; i++) {
+      soundArray.push(f + i + '.mp3')
     }
 
-    this.setState({ tabObj: mediaObject }, function () {
-      console.log(this.state.tabObj)
-    })
+    this.getPoems(this.state.selectedStateMS.Poems)
+      .then(res => {
+        for (let i = 1; i < 5; i++) {
+          poemArray.push(res[i])
+        }
+
+        let mediaObject = {}
+        let mapArray = ['One', 'Two', 'Three', 'Four']
+        for (let i = 0; i < 4; i++) {
+          mediaObject[mapArray[i]] = [imgDir[i], poemArray[i], soundArray[i]]
+        }
+
+        this.setState({ tabObj: mediaObject }, function () {
+          console.log(this.state.tabObj)
+        })
+      })
   }
 
   render () {
