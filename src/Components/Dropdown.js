@@ -63,16 +63,17 @@ export default class Dropdown extends Component {
     super(props)
     this.state = {
       selected: ''
+
     }
   }
   handleCategoryClick (e) {
     let selected = e.target.innerHTML
-    console.log(selected)
-    this.setState({ selected: selected })
-    // KALLER PÅ FUNKSJONEN I PARENT-KOMPONENTEN!
+
     this.props.myFunc(selected, this)
-    
-        this.setState({ selected: e.target.innerHTML })
+
+    // KALLER PÅ FUNKSJONEN I PARENT-KOMPONENTEN!
+
+    this.setState({ selected: e.target.innerHTML })
     let xs = document.getElementsByClassName(this.props.name)
 
     for (let x of xs) {
