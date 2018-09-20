@@ -37,6 +37,11 @@ injectGlobal`
     background-color: papayawhip;
     text-align: center;
   }
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `
 ReactDOM.render(<FrontPageWrapper />, document.getElementById('root'))
 registerServiceWorker()

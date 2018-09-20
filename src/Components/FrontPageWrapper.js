@@ -76,7 +76,7 @@ export default class FrontPageWrapper extends Component {
     this.getPoems(this.state.selectedStateMS.Poems)
       .then(res => {
         for (let i = 1; i < 5; i++) {
-          poemArray.push(res[i])
+          poemArray.push({ 'title': res[i].title, 'poem': res[i].poem, 'credits': res[i].credits })
         }
 
         let mediaObject = {}
