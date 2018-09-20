@@ -50,10 +50,6 @@ export default class MediaSelector extends Component {
     })
   }
 
-  uploadHandler () {
-    // axios.post('../Assets/images/i1.jpg', this.state.selectedImage)
-  }
-
   updateSelectedState () {
     this.setstate({ selectedState: this.state.selectedState })
   }

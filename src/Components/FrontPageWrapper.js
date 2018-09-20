@@ -49,7 +49,7 @@ export default class FrontPageWrapper extends Component {
   }
   async getPoems (dir) {
     try {
-      let l = await axios.get('/poems/' + dir.toLowerCase() + '.json')
+      let l = await axios.get('./poems/' + dir.toLowerCase() + '.json')
       return l.data
     } catch (error) {
       console.log(error)
