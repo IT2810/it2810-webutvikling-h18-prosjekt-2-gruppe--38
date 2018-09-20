@@ -14,10 +14,12 @@ const Wrapper = styled.div`
 export default class FrontPageWrapper extends Component {
   constructor (props) {
     super(props)
-    this.state = { imgDir: '',
+    this.state = {
+      imgDir: '',
       tabObj: {},
       sendObj: [],
-      selectedStateMS: { } }
+      selectedStateMS: { }
+    }
     this.transferState = this.transferState.bind(this)
     this.sendClick = this.sendClick.bind(this)
   }
@@ -53,9 +55,21 @@ export default class FrontPageWrapper extends Component {
       console.log(error)
     }
   }
+
+  shuffle (sourceArray) {
+    for (var i = 0; i < sourceArray.length - 1; i++) {
+      var j = i + Math.floor(Math.random() * (sourceArray.length - i))
+
+      var temp = sourceArray[j]
+      sourceArray[j] = sourceArray[i]
+      sourceArray[i] = temp
+    }
+    return sourceArray
+  }
+
   generateTabs () {
     let imgArray = []
-    let imgDir = [] // Denne skal sendes videre
+    let imgDir = []
     let poemArray = []
     let soundArray = []
 
@@ -76,16 +90,20 @@ export default class FrontPageWrapper extends Component {
     this.getPoems(this.state.selectedStateMS.Poems)
       .then(res => {
         for (let i = 1; i < 5; i++) {
-          poemArray.push({ 'title': res[i].title, 'poem': res[i].poem, 'credits': res[i].credits })
+          poemArray.push(res[i])
         }
 
         let mediaObject = {}
         let mapArray = ['One', 'Two', 'Three', 'Four']
+        // Shuffles array to randomize output
+        imgDir = this.shuffle(imgDir)
+        poemArray = this.shuffle(poemArray)
+        soundArray = this.shuffle(soundArray)
         for (let i = 0; i < 4; i++) {
           mediaObject[mapArray[i]] = [imgDir[i], poemArray[i], soundArray[i]]
         }
 
-        this.setState({ tabObj: mediaObject }, function () {
+        this.setState({ tabObj: mediaObject }, () => {
           console.log(this.state.tabObj)
         })
       })
