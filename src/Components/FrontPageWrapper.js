@@ -120,7 +120,7 @@ export default class FrontPageWrapper extends Component {
   render () {
     return (
       <Wrapper>
-        <Title title="Exhibition Name" />
+        <Title title="Exhibition" />
         <NavBar list={['One', 'Two', 'Three', 'Four']} sendClickToFPW = {this.sendClick} />
         <Display svgElements={[]} dir={this.state.imgDir} dispObject = {this.state.sendObj} />
         <MediaSelector
