@@ -45,8 +45,7 @@ const ListElement = styled.li`
 
 export default class NavBar extends Component {
   renderListElements () {
-    let w = Math.max(document.body.clientWidth, window.innerWidth || 0)
-    console.log(w)
+    // let w = Math.max(document.body.clientWidth, window.innerWidth || 0)
     let listElements = this.props.list.map((listValue) => {
       return <ListElement onClick = {() => this.handleClick(listValue)} key={listValue}>{listValue}</ListElement>
     })

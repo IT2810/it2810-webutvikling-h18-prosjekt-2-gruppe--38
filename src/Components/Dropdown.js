@@ -6,7 +6,7 @@ const Button = styled.div`
   background-color: papayawhip;
   color: palevioletred;
   padding: 10px;
-  font-size: 1.2em
+  font-size: 1.2em;
   border: 2px solid palevioletred;
   border-radius: 7px;
 `
@@ -90,7 +90,6 @@ export default class Dropdown extends Component {
           onClick={(e) => this.handleCategoryClick(e, this.props.name)}
           href="#"
           key={name}
-          style={{ backgroundColor: '#f1f1f1' }}
         >
           {name}
         </Element>

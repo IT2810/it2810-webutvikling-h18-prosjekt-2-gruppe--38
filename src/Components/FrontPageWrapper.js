@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import styled, { consolidateStreamedStyles } from 'styled-components'
+import styled from 'styled-components'
 import Title from './Title'
 import NavBar from './NavBar'
 import Display from './Display'
 import MediaSelector from './MediaSelector'
-import data from '../Assets/poems.json'
+import axios from 'axios'
 
 const Wrapper = styled.div`
   text-align: center;
@@ -45,42 +45,50 @@ export default class FrontPageWrapper extends Component {
     }
     return keys.length
   }
+  async getPoems (dir) {
+    try {
+      let l = await axios.get('/poems/' + dir.toLowerCase() + '.json')
+      return l.data
+    } catch (error) {
+      console.log(error)
+    }
+  }
   generateTabs () {
-    let imgArray = ['One', 'Two', 'Three', 'Four']
+    let imgArray = []
     let imgDir = [] // Denne skal sendes videre
-    const l = imgArray.length
-    switch (this.state.selectedStateMS.Image) {
-      case 'Insects':
-        for (let i = 0; i < l; i++) {
-          imgArray[i] = `/images/i${(i + 1).toString()}.svg`
-        }
-        break
-      case 'Fish':
-        for (let i = 0; i < l; i++) {
-          imgArray[i] = `/images/f${(i + 1).toString()}.svg`
-        }
-        break
-      case 'Cats':
-        for (let i = 0; i < l; i++) {
-          imgArray[i] = `/images/c${(i + 1).toString()}.svg`
-        }
-        break
+    let poemArray = []
+    let soundArray = []
+
+    for (let i = 0; i < 4; i++) {
+      imgArray.push('/images/' + this.state.selectedStateMS.Image.substr(0, 1).toLowerCase() + (i + 1) + '.svg')
     }
 
-    for (let i = 0; i < l; i++) {
+    for (let i = 0; i < 4; i++) {
       let randomNum = Math.floor((Math.random() * (imgArray.length - 1)))
       imgDir.push((imgArray.splice(randomNum, 1))[0])
     }
-    let mediaObject = {
-      'One': [imgDir[0], '', ''],
-      'Two': [imgDir[1], '', ''],
-      'Three': [imgDir[2], '', ''],
-      'Four': [imgDir[3], '', '']
+
+    let f = '/sound/' + this.state.selectedStateMS['Audio Clips'].toLowerCase() + '/'
+    for (let i = 1; i < 5; i++) {
+      soundArray.push(f + i + '.mp3')
     }
 
-    this.setState({ tabObj: mediaObject }, function () {
-      console.log(this.state.tabObj)
-    })
+    this.getPoems(this.state.selectedStateMS.Poems)
+      .then(res => {
+        for (let i = 1; i < 5; i++) {
+          poemArray.push(res[i])
+        }
+
+        let mediaObject = {}
+        let mapArray = ['One', 'Two', 'Three', 'Four']
+        for (let i = 0; i < 4; i++) {
+          mediaObject[mapArray[i]] = [imgDir[i], poemArray[i], soundArray[i]]
+        }
+
+        this.setState({ tabObj: mediaObject }, function () {
+          console.log(this.state.tabObj)
+        })
+      })
   }
 
   sendClick (stringKeyFromNavBar) {
