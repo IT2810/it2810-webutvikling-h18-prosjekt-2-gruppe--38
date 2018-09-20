@@ -36,7 +36,10 @@ export default class Display extends Component {
     super(props)
     // this.axiosCall = this.axiosCall.bind(this)
     this.state = {
-      selectedImage: null
+      selectedImage: null,
+      selectedObject: {},
+      selectedPoem: [],
+      selectedSound: []
 
     }
   }
