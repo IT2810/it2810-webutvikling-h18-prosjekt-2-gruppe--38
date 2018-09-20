@@ -44,7 +44,6 @@ const ImgStyle = styled.div`
 export default class Display extends Component {
   constructor (props) {
     super(props)
-    // this.axiosCall = this.axiosCall.bind(this)
     this.state = {
       selectedImage: null,
       selectedObject: {},
